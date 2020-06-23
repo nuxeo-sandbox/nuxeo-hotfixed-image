@@ -1,7 +1,8 @@
 version: '2'
 services:
   nuxeo:
-    image: nuxeo-apple:10.10-HF
+    build: ./build_nuxeo
+    image: nuxeo-hf:10.10
     ports:
     - "8080:8080"
     - "8787:8787"
