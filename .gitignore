@@ -1,3 +1,11 @@
 
 instance.clid
 .env
+
+# Ignore folders used for local persistence
+nuxeo_binaries/
+nuxeo_database/
+nuxeo_es/
+nuxeo_packages/
+nuxeo_plugins/
+nuxeo_templates/
