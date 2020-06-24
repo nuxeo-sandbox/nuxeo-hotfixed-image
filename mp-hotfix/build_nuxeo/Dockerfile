@@ -8,4 +8,5 @@ RUN for i in "/var/lib/nuxeo/data" "/var/log/nuxeo"; do \
     done && \
     chown -f nuxeo:0 /etc/nuxeo/nuxeo.conf && chmod -f g+rw /etc/nuxeo/nuxeo.conf && \
     chmod 770 /var/log/nuxeo
+RUN rm /var/lib/nuxeo/data/instance.clid
 USER 1000

@@ -1,0 +1,24 @@
+version: '2'
+services:
+  nuxeo:
+    build: ./build_nuxeo
+    image: nuxeo-hf:10.10-latest
+    ports:
+    - "8080:8080"
+    - "8787:8787"
+    - "9200:9200"
+    environment:
+    - TZ=US/Pacific
+    - NUXEO_DEV_MODE=true
+    - NUXEO_PACKAGES=nuxeo-jsf-ui nuxeo-web-ui nuxeo-dam ${STUDIO}
+    - "NUXEO_CUSTOM_PARAM=JAVA_OPTS=$$JAVA_OPTS -Xdebug -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n"
+    - NUXEO_CLID=${CLID}
+    volumes:
+    # This doesn't work with the custom image because the folder is no longer empty
+    # - "./nuxeo_store:/opt/nuxeo/server/packages/store/"
+    - "./nuxeo_database:/var/lib/nuxeo/data/h2"
+    - "./nuxeo_binaries:/var/lib/nuxeo/data/binaries"
+    - "./nuxeo_es:/var/lib/nuxeo/data/elasticsearch"
+    - "./nuxeo_packages:/opt/nuxeo/packages/"
+    - "./nuxeo_templates:/opt/nuxeo/custom_templates/"
+    - "./nuxeo_plugins:/opt/nuxeo/server/nxserver/plugins"
