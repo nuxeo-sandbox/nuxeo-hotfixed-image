@@ -2,7 +2,7 @@
 
 Examples for building a custom Nuxeo Docker image that has hotfixes pre-installed. The same principle can be used to install other [Nuxeo Packages](https://marketplace.nuxeo.com/) as well.
 
-Tip: any `nuxeoctl` commands need to be executed via `/docker-entrypoint.sh`.
+Tip: any `nuxeoctl` commands executed in the `Dockerfile` need to be executed via `/docker-entrypoint.sh`.
 
 # Usage
 
