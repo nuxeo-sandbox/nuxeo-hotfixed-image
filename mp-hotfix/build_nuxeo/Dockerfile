@@ -1,6 +1,13 @@
 FROM nuxeo:10.10
-COPY instance.clid /var/lib/nuxeo/data/instance.clid
+# This Dockerfile installs the latest Nuxeo hotfixes (via `mp-hotfix`)
+
+# A CLID is required in order to install hotfixes
+# Make sure to set correct permissions on instance.clid; if they are wrong
+# nuxeoctl won't be able to access it
+COPY --chown=nuxeo:0 instance.clid /var/lib/nuxeo/data/instance.clid
+# Bake hotfixes into the image
 RUN /docker-entrypoint.sh nuxeoctl mp-hotfix --accept=true
+
 # Cleanup
 USER root
 RUN for i in "/var/lib/nuxeo/data" "/var/log/nuxeo"; do \
@@ -8,5 +15,9 @@ RUN for i in "/var/lib/nuxeo/data" "/var/log/nuxeo"; do \
     done && \
     chown -f nuxeo:0 /etc/nuxeo/nuxeo.conf && chmod -f g+rw /etc/nuxeo/nuxeo.conf && \
     chmod 770 /var/log/nuxeo
-RUN rm /var/lib/nuxeo/data/instance.clid
+# Remove the CLID from the build as we should use the "correct" one at runtime
+# Clear the "configured" flag so that the container will correctly handle any
+# params at runtime
+RUN rm /var/lib/nuxeo/data/instance.clid && rm ${NUXEO_HOME}/configured
+
 USER 1000
