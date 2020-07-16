@@ -2,12 +2,14 @@
 
 Examples for building a custom Nuxeo Docker image that has hotfixes pre-installed. The same principle can be used to install other [Nuxeo Packages](https://marketplace.nuxeo.com/) as well.
 
-Tip: any `nuxeoctl` commands executed in the `Dockerfile` need to be executed via `/docker-entrypoint.sh`.
+Tip: any `nuxeoctl` commands executed in the `Dockerfile` need to be executed via [`/docker-entrypoint.sh`](https://github.com/nuxeo/docker-nuxeo/blob/321756e6c8d808b1fc225cfdc9287e2bde8ec319/10.10/docker-entrypoint.sh).
+
+Tip: because of the above, `docker-entrypoint.sh` [sets a flag](https://github.com/nuxeo/docker-nuxeo/blob/321756e6c8d808b1fc225cfdc9287e2bde8ec319/10.10/docker-entrypoint.sh#L42) to indicate that the config has run. It is important to clear this flag so that when the container is launched it will process the config as expected.
 
 # Usage
 
 * The example in the `mp-hotfix` folder uses the `mp-hotfix` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to automatically install the latest hotfixes.
-* The example in the `mp-install` folder uses the `mp-install` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to install a specific hotfix version. Note that dependency resolution will automatically install prior hotfixes if needed.
+* The example in the `mp-install` folder uses the `mp-install` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to install a specific hotfix version. Note that dependency resolution will automatically install prior hotfixes as needed.
 
 To run the build you need to provide your `instance.clid` file. Place it in the same folder as the `Dockerfile`.
 
