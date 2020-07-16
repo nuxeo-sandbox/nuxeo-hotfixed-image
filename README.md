@@ -8,8 +8,8 @@ Tip: because of the above, `docker-entrypoint.sh` [sets a flag](https://github.c
 
 # Usage
 
-* The example in the `mp-hotfix` folder uses the `mp-hotfix` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to automatically install the latest hotfixes.
-* The example in the `mp-install` folder uses the `mp-install` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to install a specific hotfix version. Note that dependency resolution will automatically install prior hotfixes as needed.
+* The example in the [mp-hotfix](mp-hotfix) folder uses the `mp-hotfix` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to automatically install the latest hotfixes.
+* The example in the [mp-install](mp-install) folder uses the `mp-install` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to install a specific hotfix version. Note that dependency resolution will automatically install prior hotfixes as needed.
 
 To run the build you need to provide your `instance.clid` file. Place it in the same folder as the `Dockerfile`.
 
