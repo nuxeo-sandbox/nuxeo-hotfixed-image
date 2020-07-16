@@ -1,0 +1,14 @@
+version: '2'
+services:
+  nuxeo:
+    container_name: nuxeo-disconnected
+    image: nuxeo-hf:10.10-latest
+    ports:
+    - "8080:8080"
+    - "8787:8787"
+    - "9200:9200"
+    environment:
+    - TZ=US/Pacific
+    - NUXEO_CUSTOM_PARAM="org.nuxeo.connect.server.reachable=false"
+    - NUXEO_INSTALL_HOTFIX=false
+    - NUXEO_CLID=${CLID}
