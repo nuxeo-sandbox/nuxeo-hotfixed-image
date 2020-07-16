@@ -10,8 +10,12 @@ Tip: because of the above, `docker-entrypoint.sh` [sets a flag](https://github.c
 
 * The example in the `mp-hotfix` folder uses the `mp-hotfix` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to automatically install the latest hotfixes.
 * The example in the `mp-install` folder uses the `mp-install` command from [`nuxeoctl`](https://doc.nuxeo.com/n/is7) to install a specific hotfix version. Note that dependency resolution will automatically install prior hotfixes as needed.
+* The docker-compose example in the `disconnected` folder is to test using the custom image in a disconnected environment; i.e. in an environment where the container cannot reach connect.nuxeo.com. This tests two aspects:
+  * There is a flag for the Nuxeo Docker container to skip hotfix installation, [`NUXEO_INSTALL_HOTFIX`](https://hub.docker.com/_/nuxeo)
+  * There is a `nuxeo.conf` param to indicate that the server is in offline mode, [org.nuxeo.connect.server.reachable](https://doc.nuxeo.com/nxdoc/configuration-parameters-index-nuxeoconf/#orgnuxeoconnectserverreachable)
+* The docker-compose example in the `connected` folder is a vanilla config to launch the custom image with full connectivity
 
-To run the build you need to provide your `instance.clid` file. Place it in the same folder as the `Dockerfile`.
+To run any of the builds you need to provide your `instance.clid` file. Place it in the same folder as the `Dockerfile`.
 
 To run an instance via `docker-compose` you need to configure a `.env` file with:
 
