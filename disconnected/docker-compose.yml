@@ -9,6 +9,6 @@ services:
     - "9200:9200"
     environment:
     - TZ=US/Pacific
-    - NUXEO_CUSTOM_PARAM="org.nuxeo.connect.server.reachable=false"
+    - "NUXEO_CUSTOM_PARAM=org.nuxeo.connect.server.reachable=false"
     - NUXEO_INSTALL_HOTFIX=false
     - NUXEO_CLID=${CLID}
